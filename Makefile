@@ -14,10 +14,9 @@ LD65 ?= ld65
 	$(CA65) $<
 
 %.nes: crt0.o %.o 
-	$(LD65) -C nrom_128_horz.cfg -o $@ crt0.o $< runtime.lib
-	#@ld65 -C %2.cfg -o %1.nes crt0.o %1.o runtime.lib || goto fail
+	$(LD65) -C nrom_128_horz.cfg -o $@ $^ nes.lib
 
-all: example1.nes
+all: crt0.o example1.nes
 
 clean:
-	rm -v example*.s *.o
+	rm -v example*.s *.o *.nes
